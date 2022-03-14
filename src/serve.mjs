@@ -19,7 +19,7 @@ const PORT = 8005 ;// config.port;
 app.use(cors());
 
 
-app.use("/api/gas", express.static('public'))
+app.use("/api/v1/gas", express.static('public'))
 app.get("/" , (req, res) => {
 	res.status(200).send(new Date().toString());
 });
@@ -34,5 +34,8 @@ const startServer = () => {
 // https.createServer(credentials, app).listen(PORT, () => {
 // 	console.log(`secure server running on port ${PORT}`);
 // });
+
+// Write to isOnline.txt
+fs.writeFileSync('./public/isOnline.txt', 'Yes');
 
 export default startServer;
