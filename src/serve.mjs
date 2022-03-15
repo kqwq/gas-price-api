@@ -4,7 +4,7 @@ import cors from "cors";
 import https from "https";
 import path from "path";
 
-let configTxt = fs.readFileSync("../config.json");
+let configTxt = fs.readFileSync("./config.json");
 const config = JSON.parse(configTxt);
 
 const secrets = {
