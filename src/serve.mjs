@@ -36,8 +36,15 @@ app.get("/" , (req, res) => {
 const startServer = () => {
 	https.createServer(credentials, app).listen(PORT, () => {
 		console.log(`secure server running on port ${PORT}`);
+	
 	});
 }
+
+// Log any requests
+app.use((req, res, next) => {
+	console.log(`${req.method} request for '${req.url}' - ${JSON.stringify(req.headers)}`);
+	next();
+});
 
 // Write to isOnline.txt
 fs.writeFileSync('./public/isOnline.txt', 'Yes');
