@@ -4,18 +4,18 @@ import cors from "cors";
 import https from "https";
 import path from "path";
 
-//const config = require("./config.json");
-// const secrets = {
-// 	privKey: fs.readFileSync('./secrets/certs/key.pem', 'utf8'),
-// 	cert: fs.readFileSync('./secrets/certs/cert.pem', 'utf8')
-// };
-// const credentials = {
-// 	"key": secrets.privKey,
-// 	"cert": secrets.cert
-// };
+const config = require("./config.json");
+const secrets = {
+	privKey: fs.readFileSync('./secrets/certs/key.pem', 'utf8'),
+	cert: fs.readFileSync('./secrets/certs/cert.pem', 'utf8')
+};
+const credentials = {
+	"key": secrets.privKey,
+	"cert": secrets.cert
+};
 //-----------------------------------------------------------------------------
 const app = express();
-const PORT = 8005 ;// config.port;
+const PORT = config.port;
 app.use(cors());
 
 
@@ -25,15 +25,17 @@ app.get("/" , (req, res) => {
 });
 
 // debug server
-const startServer = () => {
-	app.listen(PORT, () => {
-		console.log('app listening on ' + PORT)
-	})
-}
+// const startServer = () => {
+// 	app.listen(PORT, () => {
+// 		console.log('app listening on ' + PORT)
+// 	})
+// }
 
-// https.createServer(credentials, app).listen(PORT, () => {
-// 	console.log(`secure server running on port ${PORT}`);
-// });
+const startServer = () => {
+	https.createServer(credentials, app).listen(PORT, () => {
+		console.log(`secure server running on port ${PORT}`);
+	});
+}
 
 // Write to isOnline.txt
 fs.writeFileSync('./public/isOnline.txt', 'Yes');
