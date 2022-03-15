@@ -6,8 +6,8 @@ import path from "path";
 
 const config = require("./config.json");
 const secrets = {
-	privKey: fs.readFileSync('./secrets/certs/key.pem', 'utf8'),
-	cert: fs.readFileSync('./secrets/certs/cert.pem', 'utf8')
+	privKey: fs.readFileSync(config.privateKeyPath, "utf8"),
+	cert: fs.readFileSync(config.certificatePath, "utf8")
 };
 const credentials = {
 	"key": secrets.privKey,

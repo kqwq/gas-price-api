@@ -12,3 +12,12 @@ To generate files without serving the API, run
 
 To serve the API without generating the files, run
 `npm run serve`
+
+```json
+./src/config.json
+{
+  port: Number,
+  privateKeyPath: String,
+  certificatePath: String
+}
+```
