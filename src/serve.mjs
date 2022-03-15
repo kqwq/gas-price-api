@@ -4,7 +4,7 @@ import cors from "cors";
 import https from "https";
 import path from "path";
 
-const config = require("./config.json");
+const config = require("../config.json");
 const secrets = {
 	privKey: fs.readFileSync(config.privateKeyPath, "utf8"),
 	cert: fs.readFileSync(config.certificatePath, "utf8")
