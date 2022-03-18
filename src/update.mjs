@@ -11,7 +11,7 @@ const main = async () => {
   if (fs.existsSync(`${outputLocation}/gas.html`)) {
     page = fs.readFileSync(`${outputLocation}/gas.html`, 'utf8');
   } else {
-    res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
+    let res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
     page = await res.text()
   }
 
