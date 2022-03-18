@@ -10,6 +10,7 @@ const main = async () => {
   let page, res
   if (fs.existsSync(`${outputLocation}/gas.html`)) {
     page = fs.readFileSync(`${outputLocation}/gas.html`, 'utf8');
+    page = page.toString();
   } else {
     res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
     page = await res.text()
