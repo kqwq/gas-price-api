@@ -7,11 +7,11 @@ const main = async () => {
   const nameToIso2 = JSON.parse(fs.readFileSync('./src/nameToIso2.json', 'utf8'));
 
   // If page is cached in public folder, use that
-  let page
+  let page, res
   if (fs.existsSync(`${outputLocation}/gas.html`)) {
     page = fs.readFileSync(`${outputLocation}/gas.html`, 'utf8');
   } else {
-    let res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
+    res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
     page = await res.text()
   }
 
