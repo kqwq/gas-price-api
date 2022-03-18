@@ -11,20 +11,23 @@ const main = async () => {
   if (fs.existsSync(`${outputLocation}/gas.html`)) {
     page = fs.readFileSync(`${outputLocation}/gas.html`, 'utf8');
     page = page.toString();
+    console.log("Using cached page");
   } else {
     res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
     page = await res.text()
+    console.log("Fetching page");
   }
 
   // Get all teext after `class="graph_outside_link">` and before `</a>`
   let countries = []
-  let regex = /graph_outside_link'>(.*?)<\/a>/g
+  let regex = /graph_outside_link["|']>(.*?)<\/a>/g
   let match = regex.exec(page)
   while (match !== null) {
     // Ignore everything after * or & characters
     countries.push(match[1].split(/\*|&/)[0].trim())
     match = regex.exec(page)
   }
+  console.log(`Found ${countries.length} countries`);
 
   // Get all text after `height: 15px; color: #000000;">` and before `</div>`
   let prices = []

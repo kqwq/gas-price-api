@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "update": "node src/update.mjs",
+    "update": "node src/updateOnly.mjs",
     "serve": "node src/serveOnly.mjs",
     "start": "node src/index.mjs"
   },
