@@ -6,8 +6,14 @@ const main = async () => {
   const outputLocation = "./public"
   const nameToIso2 = JSON.parse(fs.readFileSync('./src/nameToIso2.json', 'utf8'));
 
-  let res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
-  let page = await res.text()
+  // If page is cached in public folder, use that
+  let page
+  if (fs.existsSync(`${outputLocation}/gas.html`)) {
+    page = fs.readFileSync(`${outputLocation}/gas.html`, 'utf8');
+  } else {
+    res = await fetch("https://www.globalpetrolprices.com/gasoline_prices/")
+    page = await res.text()
+  }
 
   // Get all teext after `class="graph_outside_link">` and before `</a>`
   let countries = []
